@@ -16,6 +16,7 @@ const Display = () => {
       setError('');
     } else {
       setError('Please enter both first name and last name');
+      setFullName('');
     }
   };
 
@@ -35,7 +36,9 @@ const Display = () => {
           value={lastName}
           onChange={(event) => setLastName(event.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!firstName.trim() || !lastName.trim()}>
+          Submit
+        </button>
       </form>
       {error && <p>{error}</p>}
       {fullName && <p>{fullName}</p>}
