@@ -11,7 +11,7 @@ const Display = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (firstName !== '' && lastName !== '') {
+    if (firstName.trim() !== '' && lastName.trim() !== '') {
       setFullName(`Full Name: ${firstName} ${lastName}`);
       setError('');
     } else {
