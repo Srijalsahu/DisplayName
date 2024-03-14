@@ -1,45 +1,44 @@
-// Display.jsx
+// display/display.jsx
 
 import React, { useState } from 'react';
-import styles from './display.module.css';
+import './display.module.css';
 
 const Display = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [fullName, setFullName] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (firstName && lastName) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (firstName !== '' && lastName !== '') {
       setFullName(`Full Name: ${firstName} ${lastName}`);
-      setSubmitted(true);
+      setError('');
+    } else {
+      setError('Please enter both first name and last name');
     }
   };
 
   return (
-    <div className={styles.container}>
-      <h2>Full Name Display</h2>
+    <div className="container">
+      <h1>Full Name Display</h1>
       <form onSubmit={handleSubmit}>
-        <div className={styles.inputGroup}>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <button type="submit" disabled={!firstName || !lastName}>
-          Submit
-        </button>
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(event) => setFirstName(event.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(event) => setLastName(event.target.value)}
+        />
+        <button type="submit">Submit</button>
       </form>
-      {submitted && <p>{fullName}</p>}
+      {error && <p>{error}</p>}
+      {fullName && <p>{fullName}</p>}
     </div>
   );
 };
