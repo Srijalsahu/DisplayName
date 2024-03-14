@@ -38,8 +38,7 @@ const Display = () => {
         />
         <button type="submit">Submit</button>
       </form>
-      {error && <p>{error}</p>}
-      {fullName && <p>{fullName}</p>}
+      {error ? null : fullName && <p>{fullName}</p>}
     </div>
   );
 };
