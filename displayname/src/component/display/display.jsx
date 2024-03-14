@@ -36,9 +36,7 @@ const Display = () => {
           value={lastName}
           onChange={(event) => setLastName(event.target.value)}
         />
-        <button type="submit" disabled={!firstName.trim() || !lastName.trim()}>
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
       {error && <p>{error}</p>}
       {fullName && <p>{fullName}</p>}
